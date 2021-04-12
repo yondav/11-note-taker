@@ -41,8 +41,15 @@ app.post('/api/notes', (req, res) => {
 });
 
 // *** come back to delete route for api
-app.delete('/apu/notes:id', (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
   console.log(req.params.id);
+  const deleteEntry = db.indexOf(req.params.id);
+  db.splice(deleteEntry);
+  fs.writeFile('./db/db.json', JSON.stringify(db), (err) => {
+    if (err) throw err;
+  });
+  console.log('Note deleted!');
+  res.json();
 });
 
 // Start server
