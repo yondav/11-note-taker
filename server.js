@@ -31,16 +31,19 @@ app.post('/api/notes', (req, res) => {
   newNote.id = uuidv4();
   db.push(newNote);
   console.log(
-    `New note with title: "${newNote.title}", text: "${newNote.text}" and id: ${newNote.id}to db.json`
+    `"title": "${newNote.title}", "text": "${newNote.text}"  "id": "${newNote.id}" posted to db.json`
   );
   fs.writeFile('./db/db.json', JSON.stringify(db), (err) => {
     if (err) throw err;
-    console.log("Couldn't post new note!");
+    console.log("Couldn't post new note");
   });
   res.json(newNote);
 });
 
 // *** come back to delete route for api
+app.delete('/apu/notes:id', (req, res) => {
+  console.log(req.params.id);
+});
 
 // Start server
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
