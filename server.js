@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 
 // imported modules
-const db = require('./db/db.json');
+let db = require('./db/db.json');
 
 // express setup
 const app = express();
@@ -40,16 +40,17 @@ app.post('/api/notes', (req, res) => {
   res.json(newNote);
 });
 
-// *** come back to delete route for api
+// delete route for api
 app.delete('/api/notes/:id', (req, res) => {
   console.log(req.params.id);
-  const deleteEntry = db.indexOf(req.params.id);
-  db.splice(deleteEntry);
-  fs.writeFile('./db/db.json', JSON.stringify(db), (err) => {
+  //const deleteEntry = db.indexOf(req.params.id);
+  const updatedDb = db.filter((n) => n.id != req.params.id);
+  db = updatedDb;
+  fs.writeFile('./db/db.json', JSON.stringify(updatedDb), (err) => {
     if (err) throw err;
   });
   console.log('Note deleted!');
-  res.json();
+  res.json(updatedDb);
 });
 
 // Start server
