@@ -42,7 +42,6 @@ app.post('/api/notes', (req, res) => {
 
 // delete route for api
 app.delete('/api/notes/:id', (req, res) => {
-  console.log(req.params.id);
   const updatedDb = db.filter((deletedNote) => deletedNote.id != req.params.id);
   db = updatedDb;
   fs.writeFile('./db/db.json', JSON.stringify(updatedDb), (err) => {
