@@ -50,22 +50,23 @@ const deleteNote = (id) =>
     },
   });
 
-const patchNote = (id) =>
+const patchNote = (id, note) =>
   fetch(`/api/notes/${id}`, {
     method: 'PATCH',
     headers: {
-      'Content Type': 'application/json',
+      'Content-Type': 'application/json',
     },
+    body: JSON.stringify(note),
   });
 
-const renderActiveNote = () => {
+const renderActiveNote = (x) => {
   hide(saveNoteBtn);
 
   if (activeNote.id) {
     // noteTitle.setAttribute('readonly', true);
     // noteText.setAttribute('readonly', true);
-    noteTitle.value = activeNote.title;
-    noteText.value = activeNote.text;
+    noteTitle.value = x.title;
+    noteText.value = x.text;
   } else {
     // noteTitle.removeAttribute('readonly');
     // noteText.removeAttribute('readonly');
@@ -80,9 +81,9 @@ const handleNoteSave = () => {
       title: noteTitle.value,
       text: noteText.value,
     };
-    patchNote(patchedNote).then(() => {
+    patchNote(activeNote.id, patchedNote).then(() => {
       getAndRenderNotes();
-      renderActiveNote();
+      renderActiveNote(patchedNote);
     });
   } else {
     const newNote = {
@@ -91,7 +92,7 @@ const handleNoteSave = () => {
     };
     saveNote(newNote).then(() => {
       getAndRenderNotes();
-      renderActiveNote();
+      renderActiveNote(activeNote);
     });
   }
 };
@@ -110,7 +111,7 @@ const handleNoteDelete = (e) => {
 
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
-    renderActiveNote();
+    renderActiveNote(activeNote);
   });
 };
 
@@ -118,13 +119,13 @@ const handleNoteDelete = (e) => {
 const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
-  renderActiveNote();
+  renderActiveNote(activeNote);
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
   activeNote = {};
-  renderActiveNote();
+  renderActiveNote(activeNote);
 };
 
 const handleRenderSaveBtn = () => {

@@ -1,1 +1,1 @@
-[{"title":"patch test","text":"this is patched","id":"d4fdd0ba-42e7-4c12-b468-6c4a48bfb267"},{"title":"patch test by id","text":"this is patched","id":"f752595a-677e-4fda-89fd-88120e27584b"},{"title":"post test","text":"this is a post","id":"a805a1a7-e935-4f29-afe9-b2614c35e9ac"}]
+[{"title":"patch test from ui","text":"this note was patched from the ui","id":"f752595a-677e-4fda-89fd-88120e27584b"},{"title":"post test from ui","text":"this note was posted from the ui","id":"90f86e34-0fc3-4529-8ba4-016d35a5ee60"}]

@@ -67,8 +67,8 @@ app.patch('/api/notes/:id', (req, res) => {
   fs.writeFile('./db/db.json', JSON.stringify(updatedDb), (err) => {
     if (err) throw err;
     console.log('Patched!');
+    res.json(updatedDb);
   });
-  res.json(updatedDb);
 });
 
 // Start server
