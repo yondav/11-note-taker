@@ -6,6 +6,7 @@ const path = require('path');
 
 // imported modules
 let db = require('./db/db.json');
+const { request } = require('http');
 
 // express setup
 const app = express();
@@ -48,6 +49,25 @@ app.delete('/api/notes/:id', (req, res) => {
     if (err) throw err;
   });
   console.log('Note deleted!');
+  res.json(updatedDb);
+});
+
+// patch route for api
+app.patch('/api/notes/:id', (req, res) => {
+  const updatedDb = db.map((note) => {
+    if (note.id === req.params.id) {
+      return {
+        ...req.body,
+        id: req.params.id,
+      };
+    }
+    return note;
+  });
+  db = updatedDb;
+  fs.writeFile('./db/db.json', JSON.stringify(updatedDb), (err) => {
+    if (err) throw err;
+    console.log('Patched!');
+  });
   res.json(updatedDb);
 });
 

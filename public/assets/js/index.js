@@ -50,31 +50,50 @@ const deleteNote = (id) =>
     },
   });
 
+const patchNote = (id) =>
+  fetch(`/api/notes/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content Type': 'application/json',
+    },
+  });
+
 const renderActiveNote = () => {
   hide(saveNoteBtn);
 
   if (activeNote.id) {
-    noteTitle.setAttribute('readonly', true);
-    noteText.setAttribute('readonly', true);
+    // noteTitle.setAttribute('readonly', true);
+    // noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
   } else {
-    noteTitle.removeAttribute('readonly');
-    noteText.removeAttribute('readonly');
+    // noteTitle.removeAttribute('readonly');
+    // noteText.removeAttribute('readonly');
     noteTitle.value = '';
     noteText.value = '';
   }
 };
 
 const handleNoteSave = () => {
-  const newNote = {
-    title: noteTitle.value,
-    text: noteText.value,
-  };
-  saveNote(newNote).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
-  });
+  if (activeNote.id) {
+    const patchedNote = {
+      title: noteTitle.value,
+      text: noteText.value,
+    };
+    patchNote(patchedNote).then(() => {
+      getAndRenderNotes();
+      renderActiveNote();
+    });
+  } else {
+    const newNote = {
+      title: noteTitle.value,
+      text: noteText.value,
+    };
+    saveNote(newNote).then(() => {
+      getAndRenderNotes();
+      renderActiveNote();
+    });
+  }
 };
 
 // Delete the clicked note
