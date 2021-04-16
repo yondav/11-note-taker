@@ -131,7 +131,7 @@ Report issues by selecting the [issues](https://github.com/yondav/11-note-taker/
 
 ## Licenses
 
-- <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a>
+- [MIT](https://github.com/yondav/11-note-taker/blob/main/LICENSE)
 
 This README file was built with [README Generator](https://github.com/yondav/README-gen-09)
 
