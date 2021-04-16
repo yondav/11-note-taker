@@ -60,6 +60,7 @@ npm i
 >     - [index.html](https://github.com/yondav/11-note-taker/blob/main/public/index.html)
 >     - [notes.html](https://github.com/yondav/11-note-taker/blob/main/public/notes.html)
 >   - [.gitignore](https://github.com/yondav/11-note-taker/blob/main/.gitignore)
+>   - [LICENSE](https://github.com/yondav/11-note-taker/blob/main/LICENSE)
 >   - [package-lock.json](https://github.com/yondav/11-note-taker/blob/main/package-lock.json)
 >   - [package.json](https://github.com/yondav/11-note-taker/blob/main/package.json)
 >   - [README.md](https://github.com/yondav/11-note-taker/blob/main/README.md)
